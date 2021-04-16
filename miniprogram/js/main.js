@@ -1,5 +1,6 @@
 import DataBus from './databus'
 import BackGround from './runtime/background'
+import Player from './runtime/player'
 
 const dataBus = new DataBus()
 const ctx = canvas.getContext('2d')
@@ -17,6 +18,8 @@ export default class Main {
   restart() {
     dataBus.reset()
     const bg = new BackGround()
+    const player = new Player()
     bg.render(ctx)
+    player.render(ctx)
   }
 }
