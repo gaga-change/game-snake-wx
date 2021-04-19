@@ -1,4 +1,5 @@
 
+import Direction from './libs/canvas-direction'
 let instance
 
 export default class DataBus {
@@ -10,6 +11,6 @@ export default class DataBus {
 
   reset() {
     this.frame = 0
-    this.dirAngle = 90
+    this.direction = new Direction()
   }
 }

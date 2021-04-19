@@ -28,30 +28,12 @@ export default class Main {
   }
 
   touchEventHandler(e) {
-    if (e.type === 'touchstart') {
-      this.startPoint = {
-        x: e.changedTouches[0].clientX,
-        y: e.changedTouches[0].clientY
-      }
-    } else if (e.type === 'touchmove') {
-      const nowPoint = {
-        x: e.changedTouches[0].clientX,
-        y: e.changedTouches[0].clientY
-      }
-      // 计算角度
-      databus.dirAngle = Math.atan2(this.startPoint.y - nowPoint.y, nowPoint.x - this.startPoint.x) * (180 / Math.PI)
-    } else if (e.type === 'touchend') {
-      this.startPoint = null
-    }
   }
 
   render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     this.bg.render(ctx)
-    this.player.render(ctx, databus.dirAngle)
-    // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-    // this.bg.render(ctx)
-    // this.player.render(ctx, databus.dirAngle)
+    this.player.render(ctx, databus.direction.nextAngule())
     if (!this.hasEventBind) {
       this.hasEventBind = true
       this.touchHandler = this.touchEventHandler.bind(this)
