@@ -6,11 +6,11 @@ export default class Player {
 
   }
 
-  render(ctx, angle = 90) {
+  render(ctx, angle = 60) {
     // 绘制一个中心点
     const width = window.innerWidth
     const height = window.innerHeight
-    console.log(width / 2, height / 2, 5, 0, 2 * Math.PI)
+    // console.log(width / 2, height / 2, 5, 0, 2 * Math.PI)
     ctx.arc(width / 2, height / 2, 5, 0, 2 * Math.PI)
     ctx.fillStyle = '#b0efeb'
     ctx.fill()

@@ -18,8 +18,8 @@
     "checkSiteMap": true,
     "uploadWithSourceMap": true,
     "compileHotReLoad": false,
-    "useMultiFrameRuntime": false,
-    "useApiHook": false,
+    "useMultiFrameRuntime": true,
+    "useApiHook": true,
     "useApiHostProcess": false,
     "babelSetting": {
       "ignore": [],
@@ -27,17 +27,17 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
-    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "bundle": false
   },
   "compileType": "game",
-  "libVersion": "2.2.5",
+  "libVersion": "2.16.0",
   "appid": "wx1c84586794aacdf3",
   "projectname": "game-snake-wx",
   "miniprogramRoot": "miniprogram/",

@@ -10,5 +10,6 @@ export default class DataBus {
 
   reset() {
     this.frame = 0
+    this.dirAngle = 90
   }
 }
