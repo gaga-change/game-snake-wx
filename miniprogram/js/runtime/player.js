@@ -5,7 +5,7 @@ import DataBus from '../databus'
 
 export default class Player {
   constructor() {
-    this.databus = new DataBus()
+    this.dataBus = new DataBus()
   }
 
   render(ctx, angle) {
@@ -13,7 +13,7 @@ export default class Player {
     const width = window.innerWidth
     const height = window.innerHeight
     ctx.beginPath()
-    ctx.arc(width / 2, height / 2, this.databus.playerRadius, 0, 2 * Math.PI)
+    ctx.arc(width / 2, height / 2, this.dataBus.playerRadius, 0, 2 * Math.PI)
     ctx.fillStyle = '#b0efeb'
     ctx.fill()
     // 绘制方向箭头

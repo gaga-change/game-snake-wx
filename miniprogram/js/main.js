@@ -1,8 +1,8 @@
 import DataBus from './databus'
 import BackGround from './runtime/background'
 import Player from './runtime/player'
-
-const databus = new DataBus()
+import Fruit from './runtime/fruit'
+const dataBus = new DataBus()
 const ctx = canvas.getContext('2d')
 /**
  * 游戏主函数
@@ -16,7 +16,7 @@ export default class Main {
   }
 
   restart() {
-    databus.reset()
+    dataBus.reset()
     this.bg = new BackGround()
     this.player = new Player()
     this.bindLoop = this.loop.bind(this)
@@ -32,8 +32,13 @@ export default class Main {
 
   render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    const newAngule = databus.direction.nextAngule()
+    const newAngule = dataBus.direction.nextAngule()
     this.bg.render(ctx, newAngule)
+    if (dataBus.frame % 60 === 0) {
+      console.log('???')
+      dataBus.fruits.push(new Fruit())
+    }
+    dataBus.fruits.forEach((item) => item.render(ctx))
     this.player.render(ctx, newAngule)
     if (!this.hasEventBind) {
       this.hasEventBind = true
@@ -44,7 +49,7 @@ export default class Main {
     }
   }
   loop() {
-    databus.frame++
+    dataBus.frame++
     this.render()
     this.aniId = window.requestAnimationFrame(
       this.bindLoop

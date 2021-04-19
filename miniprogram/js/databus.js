@@ -1,4 +1,3 @@
-
 import Direction from './libs/canvas-direction'
 let instance
 
@@ -15,7 +14,17 @@ export default class DataBus {
     this.direction.reset()
     // 地图初始左上角坐标
     this.mapX = 20
-    this.mapY = 20 
-    this.playerRadius = 5 // 蛇头半径
+    this.mapY = 20
+    // 地图宽度
+    this.mapWidth = window.innerWidth - 40
+    // 地图高度
+    this.mapHeight = window.innerHeight - 40
+    // 地图移动速度
+    this.mapSpeed = 2
+    // 蛇头半径
+    this.playerRadius = 5
+    // 食物半径
+    this.fruitRadius = 5
+    this.fruits = []
   }
 }
