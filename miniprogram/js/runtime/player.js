@@ -11,9 +11,12 @@ export default class Player {
     const width = window.innerWidth
     const height = window.innerHeight
     // console.log(width / 2, height / 2, 5, 0, 2 * Math.PI)
+    ctx.beginPath()
     ctx.arc(width / 2, height / 2, 5, 0, 2 * Math.PI)
     ctx.fillStyle = '#b0efeb'
     ctx.fill()
+    // ctx.strokeStyle = '#eca3f5'
+    // ctx.stroke()
 
     // 绘制方向箭头
     const r = Math.sqrt(Math.pow(DIR_LENGTH, 2) * 2) / 2

@@ -49,9 +49,9 @@ export default class Main {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     this.bg.render(ctx)
     this.player.render(ctx, databus.dirAngle)
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
-    this.bg.render(ctx)
-    this.player.render(ctx, databus.dirAngle)
+    // ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+    // this.bg.render(ctx)
+    // this.player.render(ctx, databus.dirAngle)
     if (!this.hasEventBind) {
       this.hasEventBind = true
       this.touchHandler = this.touchEventHandler.bind(this)
@@ -67,5 +67,4 @@ export default class Main {
       this.bindLoop
     )
   }
-
 }
