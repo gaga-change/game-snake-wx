@@ -4,13 +4,13 @@ export default class Direction {
     if (instance) {
       return instance
     }
-    this.nowAngule = null
     this.hasEventBind = false
-    this.bindEvnt()
     this.reset(defaultAngle)
+    this.bindEvnt()
   }
 
   reset(defaultAngle) {
+    this.nowAngule = null
     this.dirAngle = defaultAngle || 90
   }
 
@@ -38,7 +38,6 @@ export default class Direction {
       // 计算角度
       const angule = Math.atan2(this.startPoint.y - nowPoint.y, nowPoint.x - this.startPoint.x) * (180 / Math.PI)
       this.dirAngle = angule
-      // this.changeCallback && this.changeCallback(angule)
     } else if (e.type === 'touchend') {
       this.startPoint = null
     }
