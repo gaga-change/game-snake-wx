@@ -13,5 +13,9 @@ export default class DataBus {
   reset() {
     this.frame = 0
     this.direction.reset()
+    // 地图初始左上角坐标
+    this.mapX = 20
+    this.mapY = 20 
+    this.playerRadius = 5 // 蛇头半径
   }
 }

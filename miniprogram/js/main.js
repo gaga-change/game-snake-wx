@@ -32,8 +32,9 @@ export default class Main {
 
   render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    this.bg.render(ctx)
-    this.player.render(ctx, databus.direction.nextAngule())
+    const newAngule = databus.direction.nextAngule()
+    this.bg.render(ctx, newAngule)
+    this.player.render(ctx, newAngule)
     if (!this.hasEventBind) {
       this.hasEventBind = true
       this.touchHandler = this.touchEventHandler.bind(this)
