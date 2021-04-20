@@ -23,9 +23,9 @@ export default class DataBus {
     this.mapX = 20
     this.mapY = 20
     // 地图宽度
-    this.mapWidth = window.innerWidth - 40
+    this.mapWidth = window.innerWidth
     // 地图高度
-    this.mapHeight = window.innerHeight - 40
+    this.mapHeight = window.innerHeight
     // 地图移动速度（蛇移动速度）每帧
     this.mapSpeed = 2
     // 蛇头半径

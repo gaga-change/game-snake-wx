@@ -22,22 +22,20 @@ export default class Player {
       const point = dataBus.snakePoints[i]
       const prePoint = dataBus.snakePoints[i + 1]
       if (i === snakeLength - 1) {
-        // 头部，正常绘制
+        // 头部
         // 下一帧移动距离
         headerMoveY = Math.sin(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
         headerMoveX = Math.cos(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
         point.gs.unshift(angle)
-        // point.render(ctx)
       } else {
         // 身体部分
-        // 获取上个原点历史第五（圆半径*2/速度）帧移动的角度
+        // 获取上个圆点历史第五（圆半径*2/速度）帧移动的角度
         const historyAngle = prePoint.gs.pop() || 0
         const y = Math.sin(2 * Math.PI / 360 * historyAngle) * dataBus.mapSpeed
         const x = Math.cos(2 * Math.PI / 360 * historyAngle) * dataBus.mapSpeed
         point.gs.unshift(historyAngle)
         point.x = point.x + x - headerMoveX
         point.y = point.y - y + headerMoveY
-        // point.render(ctx)
         if (i === 0) {
           point.gs.pop()
         }
