@@ -1,4 +1,4 @@
-import DataBus from '../databus'
+import DataBus from '../DataBus'
 
 export default class BackGround {
   constructor() {

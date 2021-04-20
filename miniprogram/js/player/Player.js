@@ -1,34 +1,11 @@
 const DIR_MARGIN = 20 // 箭头离中心点距离，值越大箭头离中心点越远
 const DIR_LENGTH = 5 // 方向箭头长度（单边），值越大箭头越大
-import DataBus from '../databus'
-import {
-  aotoAngule
-} from '../libs/canvas-direction'
-import Point from './point'
-
-
-class SnakeBody {
-  constructor() {
-    this.dataBus = new DataBus()
-    // todo 加速逻辑待处理
-    let temp = Math.floor(this.dataBus.playerRadius * 2 / this.dataBus.mapSpeed)
-    this.historyAngle = []
-    for (let i = 0; i < temp; i++) {
-      this.historyAngle.push(0)
-    }
-  }
-
-  render(prePoint, angule) {
-    const bodyAngule = this.historyAngle.pop()
-    this.historyAngle.unshift(angule)
-
-  }
-
-}
+import DataBus from '../DataBus'
+const dataBus = new DataBus()
 
 export default class Player {
   constructor() {
-    this.dataBus = new DataBus()
+    
   }
 
   render(ctx, angle) {
@@ -37,22 +14,22 @@ export default class Player {
     const height = window.innerHeight
     let headerMoveX
     let headerMoveY
-    for (let i = this.dataBus.snakePoints.length - 1; i >= 0; i--) {
-      const point = this.dataBus.snakePoints[i]
-      const prePoint = this.dataBus.snakePoints[i + 1]
-      if (i === this.dataBus.snakePoints.length - 1) {
+    for (let i = dataBus.snakePoints.length - 1; i >= 0; i--) {
+      const point = dataBus.snakePoints[i]
+      const prePoint = dataBus.snakePoints[i + 1]
+      if (i === dataBus.snakePoints.length - 1) {
         // 头部，正常绘制
         // 下一帧移动距离
-        headerMoveY = Math.sin(2 * Math.PI / 360 * angle) * this.dataBus.mapSpeed
-        headerMoveX = Math.cos(2 * Math.PI / 360 * angle) * this.dataBus.mapSpeed
+        headerMoveY = Math.sin(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
+        headerMoveX = Math.cos(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
         point.gs.unshift(angle)
         point.render(ctx)
       } else {
         // 身体部分
         // 获取上个原点历史第五（圆半径*2/速度）帧移动的角度
         const historyAngle = prePoint.gs.pop() || 0
-        const y = Math.sin(2 * Math.PI / 360 * historyAngle) * this.dataBus.mapSpeed
-        const x = Math.cos(2 * Math.PI / 360 * historyAngle) * this.dataBus.mapSpeed
+        const y = Math.sin(2 * Math.PI / 360 * historyAngle) * dataBus.mapSpeed
+        const x = Math.cos(2 * Math.PI / 360 * historyAngle) * dataBus.mapSpeed
         point.gs.unshift(historyAngle)
         point.x = point.x + x - headerMoveX
         point.y = point.y - y + headerMoveY

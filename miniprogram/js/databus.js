@@ -1,5 +1,5 @@
 import Direction from './libs/canvas-direction'
-import Point from './runtime/point'
+import SnakePoint from './player/SnakePoint'
 let instance
 
 export default class DataBus {
@@ -37,7 +37,7 @@ export default class DataBus {
       if (i === 0) {
         color = 'red'
       }
-      this.snakePoints.unshift(new Point(window.innerWidth / 2 - this.playerRadius * 2 * i, window.innerHeight / 2, color))
+      this.snakePoints.unshift(new SnakePoint(window.innerWidth / 2 - this.playerRadius * 2 * i, window.innerHeight / 2, this.playerRadius, color))
     }
   }
 }
