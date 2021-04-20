@@ -11,13 +11,11 @@ export default class Player {
     this.arrow = new Arrow()
   }
 
-  render(ctx, angle) {
-    this.arrow.render(ctx, angle)
-    // 绘制一个中心点
+  update(angle) {
+    this.arrow.update(angle)
     let headerMoveX
     let headerMoveY
     const snakeLength = dataBus.snakePoints.length
-
     for (let i = snakeLength - 1; i >= 0; i--) {
       const point = dataBus.snakePoints[i]
       const prePoint = dataBus.snakePoints[i + 1]
@@ -41,6 +39,10 @@ export default class Player {
         }
       }
     }
+  }
+
+  render(ctx) {
+    this.arrow.render(ctx)
     // 从尾部开始绘制
     dataBus.snakePoints.forEach(point => point.render(ctx))
   }

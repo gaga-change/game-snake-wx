@@ -5,7 +5,7 @@ export default class BackGround {
     this.dataBus = new DataBus
   }
 
-  render(ctx, angle) {
+  update(angle) {
     const y = Math.sin(2 * Math.PI / 360 * angle) * this.dataBus.mapSpeed
     const x = Math.cos(2 * Math.PI / 360 * angle) * this.dataBus.mapSpeed
     this.dataBus.mapX -= x
@@ -19,6 +19,9 @@ export default class BackGround {
       this.dataBus.mapX + this.dataBus.mapWidth <= window.innerWidth / 2 + this.dataBus.playerRadius) {
         this.dataBus.mapX += x
     }
+  }
+
+  render(ctx) {
     ctx.fillStyle = '#ffffff'
     ctx.fillRect(0, 0, window.innerWidth, window.innerHeight)
     ctx.beginPath()

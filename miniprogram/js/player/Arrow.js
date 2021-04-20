@@ -5,8 +5,7 @@ export default class Arrow {
   constructor() {
 
   }
-
-  render(ctx, angle) {
+  update(angle) {
     const width = window.innerWidth
     const height = window.innerHeight
     // 绘制方向箭头
@@ -17,10 +16,18 @@ export default class Arrow {
       x: width / 2 + dataBus.arrowMargin * cosAngle,
       y: height / 2 - dataBus.arrowMargin * sinAngle
     }
+    this.points = [
+      [centerPoint.x - sinAngle * r, centerPoint.y - cosAngle * r],
+      [centerPoint.x + cosAngle * r, centerPoint.y - sinAngle * r],
+      [centerPoint.x + sinAngle * r, centerPoint.y + cosAngle * r]
+    ]
+  }
+
+  render(ctx) {
     ctx.beginPath()
-    ctx.moveTo(centerPoint.x - sinAngle * r, centerPoint.y - cosAngle * r)
-    ctx.lineTo(centerPoint.x + cosAngle * r, centerPoint.y - sinAngle * r)
-    ctx.lineTo(centerPoint.x + sinAngle * r, centerPoint.y + cosAngle * r)
+    ctx.moveTo(...this.points[0])
+    ctx.lineTo(...this.points[1])
+    ctx.lineTo(...this.points[2])
     ctx.strokeStyle = dataBus.arrowColor
     ctx.stroke()
   }

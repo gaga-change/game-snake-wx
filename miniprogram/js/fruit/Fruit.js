@@ -12,9 +12,12 @@ export default class Fruit extends Point {
     this.setPosition()
   }
 
-  render(ctx) {
+  update() {
     this.x = dataBus.mapX + dataBus.fruitRadius + this.positionX
     this.y = dataBus.mapY + dataBus.fruitRadius + this.positionY
+  }
+
+  render(ctx) {
     super.render(ctx)
   }
 

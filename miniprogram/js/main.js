@@ -34,22 +34,32 @@ export default class Main {
     )
   }
 
-  touchEventHandler(e) {
+  touchEventHandler(e) {}
+  // 全局碰撞检测
+  collisionDetection() {}
+
+  update() {
+    // 下一帧 蛇的方向
+    this.newAngule = dataBus.direction.nextAngule()
+    this.bg.update(this.newAngule)
+    dataBus.fruits.forEach((item) => item.update())
+    this.player.update(this.newAngule)
+    this.collisionDetection()
   }
 
   render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    // 下一帧 蛇的方向
-    const newAngule = dataBus.direction.nextAngule()
     // 背景绘制
-    this.bg.render(ctx, newAngule)
+    this.bg.render(ctx)
     // 每一秒新增一个水果，数量最多10个
     if (dataBus.frame % 60 === 0 && dataBus.fruits.length < 10) {
       dataBus.fruits.push(new Fruit())
     }
     // 水果绘制
     dataBus.fruits.forEach((item) => item.render(ctx))
-    this.player.render(ctx, newAngule)
+    // 蛇绘制
+    this.player.render(ctx)
+    // 事件绑定
     if (!this.hasEventBind) {
       this.hasEventBind = true
       this.touchHandler = this.touchEventHandler.bind(this)
@@ -58,8 +68,10 @@ export default class Main {
       })
     }
   }
+  
   loop() {
     dataBus.frame++
+    this.update()
     this.render()
     this.aniId = window.requestAnimationFrame(
       this.bindLoop
