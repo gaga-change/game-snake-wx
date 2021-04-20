@@ -1,4 +1,5 @@
 import Direction from './libs/canvas-direction'
+import Point from './runtime/point'
 let instance
 
 export default class DataBus {
@@ -19,12 +20,24 @@ export default class DataBus {
     this.mapWidth = window.innerWidth - 40
     // 地图高度
     this.mapHeight = window.innerHeight - 40
-    // 地图移动速度
+    // 地图移动速度（蛇移动速度）每帧
     this.mapSpeed = 2
     // 蛇头半径
     this.playerRadius = 5
     // 食物半径
     this.fruitRadius = 5
     this.fruits = []
+    this.snakePoints = [
+      // new Point(window.innerWidth / 2 - this.playerRadius * 2 * 2, window.innerHeight / 2, 'green'),
+      // new Point(window.innerWidth / 2 - this.playerRadius * 2 * 1, window.innerHeight / 2, 'blue'),
+      // new Point(window.innerWidth / 2 - this.playerRadius * 2 * 0, window.innerHeight / 2, 'red')
+    ]
+    for (let i = 0; i < 10; i++) {
+      let color = 'blue'
+      if (i === 0) {
+        color = 'red'
+      }
+      this.snakePoints.unshift(new Point(window.innerWidth / 2 - this.playerRadius * 2 * i, window.innerHeight / 2, color))
+    }
   }
 }

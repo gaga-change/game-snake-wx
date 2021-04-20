@@ -1,4 +1,10 @@
 let instance
+
+export function aotoAngule (angule) {
+  if (angule < -180) return angule += 360
+  if (angule > 180) return angule -= 360
+  return angule
+}
 export default class Direction {
   constructor(defaultAngle) {
     if (instance) {
@@ -52,11 +58,7 @@ export default class Direction {
   }
   // 计算下一个角度，实现方向变换动画效果
   _nextAngule(goalAngule, nowAngule, step = 10) {
-    const aotoAngule = (angule) => {
-      if (angule < -180) return angule += 360
-      if (angule > 180) return angule -= 360
-      return angule
-    }
+    
     let temp = goalAngule - nowAngule
     temp = aotoAngule(temp)
     if (Math.abs(temp) < step) {

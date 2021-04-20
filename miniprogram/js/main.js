@@ -35,7 +35,6 @@ export default class Main {
     const newAngule = dataBus.direction.nextAngule()
     this.bg.render(ctx, newAngule)
     if (dataBus.frame % 60 === 0) {
-      console.log('???')
       dataBus.fruits.push(new Fruit())
     }
     dataBus.fruits.forEach((item) => item.render(ctx))
