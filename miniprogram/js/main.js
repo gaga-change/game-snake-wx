@@ -39,11 +39,15 @@ export default class Main {
 
   render() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    // 下一帧 蛇的方向
     const newAngule = dataBus.direction.nextAngule()
+    // 背景绘制
     this.bg.render(ctx, newAngule)
-    if (dataBus.frame % 60 === 0) {
+    // 每一秒新增一个水果，数量最多10个
+    if (dataBus.frame % 60 === 0 && dataBus.fruits.length < 10) {
       dataBus.fruits.push(new Fruit())
     }
+    // 水果绘制
     dataBus.fruits.forEach((item) => item.render(ctx))
     this.player.render(ctx, newAngule)
     if (!this.hasEventBind) {

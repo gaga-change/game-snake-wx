@@ -1,17 +1,19 @@
-const DIR_MARGIN = 20 // 箭头离中心点距离，值越大箭头离中心点越远
-const DIR_LENGTH = 5 // 方向箭头长度（单边），值越大箭头越大
 import DataBus from '../DataBus'
+import Arrow from './Arrow'
 const dataBus = new DataBus()
 
 export default class Player {
   constructor() {
-    
+    this.reset()
+  }
+
+  reset() {
+    this.arrow = new Arrow()
   }
 
   render(ctx, angle) {
+    this.arrow.render(ctx, angle)
     // 绘制一个中心点
-    const width = window.innerWidth
-    const height = window.innerHeight
     let headerMoveX
     let headerMoveY
     for (let i = dataBus.snakePoints.length - 1; i >= 0; i--) {
@@ -39,20 +41,7 @@ export default class Player {
         }
       }
     }
-    // 绘制方向箭头
-    const r = Math.sqrt(Math.pow(DIR_LENGTH, 2) * 2) / 2
-    const sinAngle = Math.sin(2 * Math.PI / 360 * angle)
-    const cosAngle = Math.cos(2 * Math.PI / 360 * angle)
-    const centerPoint = {
-      x: width / 2 + DIR_MARGIN * cosAngle,
-      y: height / 2 - DIR_MARGIN * sinAngle
-    }
-    ctx.beginPath()
-    ctx.moveTo(centerPoint.x - sinAngle * r, centerPoint.y - cosAngle * r)
-    ctx.lineTo(centerPoint.x + cosAngle * r, centerPoint.y - sinAngle * r)
-    ctx.lineTo(centerPoint.x + sinAngle * r, centerPoint.y + cosAngle * r)
-    ctx.strokeStyle = '#eca3f5'
-    ctx.stroke()
+    
   }
   renderPoint() {
 
