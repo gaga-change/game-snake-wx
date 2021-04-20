@@ -4,6 +4,9 @@ import Player from './runtime/player'
 import Fruit from './runtime/fruit'
 const dataBus = new DataBus()
 const ctx = canvas.getContext('2d')
+canvas.width = canvas.width * window.devicePixelRatio
+canvas.height = canvas.height * window.devicePixelRatio
+ctx.scale(window.devicePixelRatio, window.devicePixelRatio)
 /**
  * 游戏主函数
  */
