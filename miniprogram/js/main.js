@@ -36,7 +36,17 @@ export default class Main {
 
   touchEventHandler(e) {}
   // 全局碰撞检测
-  collisionDetection() {}
+  collisionDetection() {
+    // 是否吃到水果（碰到算吃掉）
+    const snakeHeaderPoint = dataBus.snakePoints[dataBus.snakePoints.length - 1]
+    const eatFruitIndex = dataBus.fruits.findIndex(fruit => {
+      return snakeHeaderPoint.isCollide(fruit)
+    })
+    if (eatFruitIndex > -1) { // 吃到水果
+      console.log('eat')
+      dataBus.fruits.splice(eatFruitIndex, 1)
+    }
+  }
 
   update() {
     // 下一帧 蛇的方向
