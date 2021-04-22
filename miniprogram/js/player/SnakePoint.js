@@ -5,17 +5,15 @@ const dataBus = new DataBus()
 export default class SnakePoint extends Point {
   constructor(x, y, color = 'blue') {
     super(x, y, dataBus.playerRadius, color)
-    // 初始角度
-    // todo 初始节点数量和移动速率有关
     this.prePoint = null
     this.nextPoint = null
-    this.gs = [0, 0, 0, 0, 0]
+    this.gs = []
   }
 
   update(angle) {
     this.gs.unshift(angle)
     let nextNewAngle = this.gs.pop()
-    if (this.prePoint) { 
+    if (this.prePoint) {
       // 头部不更新做表单
       this.x = this.prePoint.x
       this.y = this.prePoint.y
@@ -49,7 +47,10 @@ export default class SnakePoint extends Point {
     }
     point.prePoint = this
     // 新增历史角度,历史角度为上个节点移动的最后一个角度,如果没有默认0 
-    this.gs = [temp, temp, temp, temp, temp]
+    this.gs = []
+    for (let i = 0; i < dataBus.playerRadius * 2 / dataBus.mapSpeed; i++) {
+      this.gs.push(temp)
+    }
     return point
   }
 }
