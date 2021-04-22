@@ -32,15 +32,5 @@ export default class DataBus {
     // 食物半径
     this.fruitRadius = 5
     this.fruits = []
-    this.lastPoint = null
-    // this.snakePoints = []
-    // this.snakePoints = null
-    // for (let i = 0; i < 10; i++) {
-    //   let color = 'blue'
-    //   if (i === 0) {
-    //     color = 'red'
-    //   }
-    //   this.snakePoints.unshift(new SnakePoint(window.innerWidth / 2 - this.playerRadius * 2 * i, window.innerHeight / 2, this.playerRadius, color, 0))
-    // }
   }
 }

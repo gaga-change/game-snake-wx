@@ -11,10 +11,10 @@ export default class Player {
   reset() {
     this.arrow = new Arrow()
     this.snakeHeader = new SnakePoint(window.innerWidth / 2, window.innerHeight / 2, '#112200')
-    dataBus.lastPoint.addPoint('#112201')
-    dataBus.lastPoint.addPoint('#112202')
-    dataBus.lastPoint.addPoint('#112203')
-    dataBus.lastPoint.addPoint('#112204')
+    this.snakeLaster = this.snakeHeader
+    for(let i = 0; i < 5; i ++) {
+      this.addPoint()
+    }
   }
 
   update(angle) {
@@ -23,18 +23,11 @@ export default class Player {
   }
 
   addPoint() {
-    dataBus.lastPoint.addPoint()
+    this.snakeLaster = this.snakeLaster.addPoint()
   }
 
   render(ctx) {
     this.arrow.render(ctx)
     this.snakeHeader.render(ctx)
-
-    // 从尾部开始绘制
-    // dataBus.snakePoints.render(ctx)
-    // dataBus.snakePoints.forEach(point => point.render(ctx))
-  }
-  renderPoint() {
-
   }
 }

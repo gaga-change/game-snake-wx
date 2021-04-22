@@ -45,7 +45,6 @@ export default class Main {
       return snakeHeaderPoint.isCollide(fruit)
     })
     if (eatFruitIndex > -1) { // 吃到水果
-      console.log('eat')
       dataBus.fruits.splice(eatFruitIndex, 1)
       // 蛇身体增加
       this.player.addPoint()

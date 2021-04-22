@@ -2,9 +2,11 @@ import DataBus from '../DataBus'
 const dataBus = new DataBus()
 
 export default class Arrow {
+
   constructor() {
 
   }
+  
   update(angle) {
     const width = window.innerWidth
     const height = window.innerHeight

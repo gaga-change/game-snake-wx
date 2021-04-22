@@ -9,7 +9,6 @@ export default class SnakePoint extends Point {
     // todo 初始节点数量和移动速率有关
     this.prePoint = null
     this.nextPoint = null
-    dataBus.lastPoint = this
     this.gs = [0, 0, 0, 0, 0]
   }
 
@@ -26,7 +25,6 @@ export default class SnakePoint extends Point {
         this.x -= x
         this.y += y
       })
-      // console.log(this.x, this.y, '???', this.prePoint.x, this.prePoint.y)
     }
     this.nextPoint && this.nextPoint.update(nextNewAngle)
   }
@@ -36,16 +34,14 @@ export default class SnakePoint extends Point {
       this.nextPoint.render(ctx)
     }
     super.render(ctx)
-    // console.log(this.x, this.y, this.r)
   }
 
   // 新增节点
-  addPoint(color) {
-    console.log(this.color, dataBus.lastPoint.color, this.nextPoint)
+  addPoint() {
     if (this.nextPoint) {
       throw new Error('非最后一个节点，不能新增下个节点')
     }
-    const point = new SnakePoint(0, 0, color)
+    const point = new SnakePoint()
     this.nextPoint = point
     let temp = 0
     if (this.prePoint) {
@@ -54,7 +50,6 @@ export default class SnakePoint extends Point {
     point.prePoint = this
     // 新增历史角度,历史角度为上个节点移动的最后一个角度,如果没有默认0 
     this.gs = [temp, temp, temp, temp, temp]
-    console.log(this.color, dataBus.lastPoint.color, this.nextPoint)
     return point
   }
 }
