@@ -2,6 +2,7 @@ import DataBus from './DataBus'
 import BackGround from './runtime/Background'
 import Player from './player/Player'
 import Fruit from './fruit/Fruit'
+import SnakePoint from './player/SnakePoint'
 
 const dataBus = new DataBus()
 const ctx = canvas.getContext('2d')
@@ -24,6 +25,7 @@ export default class Main {
 
   restart() {
     dataBus.reset()
+    // dataBus.snakePoints = new SnakePoint(window.innerWidth / 2, window.innerHeight / 2)
     this.bg = new BackGround()
     this.player = new Player()
     this.bindLoop = this.loop.bind(this)
@@ -38,13 +40,15 @@ export default class Main {
   // 全局碰撞检测
   collisionDetection() {
     // 是否吃到水果（碰到算吃掉）
-    const snakeHeaderPoint = dataBus.snakePoints[dataBus.snakePoints.length - 1]
+    const snakeHeaderPoint = this.player.snakeHeader
     const eatFruitIndex = dataBus.fruits.findIndex(fruit => {
       return snakeHeaderPoint.isCollide(fruit)
     })
     if (eatFruitIndex > -1) { // 吃到水果
       console.log('eat')
       dataBus.fruits.splice(eatFruitIndex, 1)
+      // 蛇身体增加
+      this.player.addPoint()
     }
   }
 

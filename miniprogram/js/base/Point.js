@@ -1,4 +1,3 @@
-
 // import DataBus from '../DataBus'
 // const dataBus = new DataBus()
 
@@ -11,6 +10,7 @@ export default class Point {
   }
   render(ctx) {
     ctx.beginPath()
+    // console.log(this.color, this.x, this.y, this.r)
     ctx.arc(this.x, this.y, this.r, 0, 2 * Math.PI)
     ctx.fillStyle = this.color
     ctx.fill()
