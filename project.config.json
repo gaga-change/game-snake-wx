@@ -27,14 +27,14 @@
       "outputPath": ""
     },
     "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
     "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "bundle": false
+    "minifyWXSS": true
   },
   "compileType": "game",
   "libVersion": "2.16.0",

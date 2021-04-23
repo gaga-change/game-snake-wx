@@ -28,10 +28,22 @@ export default class SnakePoint extends Point {
   }
 
   render(ctx) {
+    if (!this.prePoint) { // 第一个点
+      ctx.beginPath()
+      ctx.strokeStyle = 'yellow'
+      ctx.lineWidth = dataBus.playerRadius * 2
+      ctx.lineCap = 'round'
+      ctx.moveTo(this.x, this.y)
+    } else if (!this.nextPoint) { // 最后一个点
+      ctx.lineTo(this.x, this.y)
+      ctx.strokeStyle = this.color
+      ctx.stroke()
+    } else {
+      ctx.lineTo(this.x, this.y)
+    }
     if (this.nextPoint) {
       this.nextPoint.render(ctx)
     }
-    super.render(ctx)
   }
 
   // 新增节点

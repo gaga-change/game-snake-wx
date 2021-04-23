@@ -27,6 +27,10 @@ export default class DataBus {
     this.mapHeight = window.innerHeight
     // 地图移动速度（蛇移动速度）每帧
     this.mapSpeed = 3
+    setTimeout(() => {
+      // this.mapSpeed = 6
+      // console.log('加速')
+    }, 3000)
     // 蛇头半径
     this.playerRadius = 6
     // 食物半径

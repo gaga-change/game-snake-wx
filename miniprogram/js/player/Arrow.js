@@ -27,6 +27,7 @@ export default class Arrow {
 
   render(ctx) {
     ctx.beginPath()
+    ctx.lineWidth = 1
     ctx.moveTo(...this.points[0])
     ctx.lineTo(...this.points[1])
     ctx.lineTo(...this.points[2])
