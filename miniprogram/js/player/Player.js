@@ -12,14 +12,17 @@ export default class Player {
     this.arrow = new Arrow()
     this.snakeHeader = new SnakePoint(window.innerWidth / 2, window.innerHeight / 2, '#112200')
     this.snakeLaster = this.snakeHeader
-    for(let i = 0; i < 5; i ++) {
+    for(let i = 0; i < 20; i ++) {
       this.addPoint()
     }
   }
 
   update(angle) {
     this.arrow.update(angle)
-    this.snakeHeader.update(angle)
+    // console.time('gaga')
+    let temp = {num: 0}
+    this.snakeHeader.update(angle, temp)
+    // console.timeEnd('gaga')
   }
 
   addPoint() {

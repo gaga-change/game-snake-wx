@@ -7,24 +7,23 @@ export default class SnakePoint extends Point {
     super(x, y, dataBus.playerRadius, color)
     this.prePoint = null
     this.nextPoint = null
-    this.gs = []
+    this.historyAngule = 0
   }
 
   update(angle) {
-    this.gs.unshift(angle)
-    let nextNewAngle = this.gs.pop()
+    let temp = this.historyAngule
+    this.historyAngule = angle
     if (this.prePoint) {
-      // 头部不更新做表单
       this.x = this.prePoint.x
       this.y = this.prePoint.y
-      this.prePoint.gs.forEach(angle => {
-        const y = Math.sin(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
-        const x = Math.cos(2 * Math.PI / 360 * angle) * dataBus.mapSpeed
-        this.x -= x
-        this.y += y
-      })
+      const y = Math.sin(2 * Math.PI / 360 * this.prePoint.historyAngule) * dataBus.mapSpeed
+      const x = Math.cos(2 * Math.PI / 360 * this.prePoint.historyAngule) * dataBus.mapSpeed
+      // 头部不更新坐标
+      this.x -= x
+      this.y += y
     }
-    this.nextPoint && this.nextPoint.update(nextNewAngle)
+    this.nextPoint && this.nextPoint.update(temp)
+    // this.nextPoint && this.nextPoint.update(temp)
   }
 
   render(ctx) {
@@ -53,16 +52,8 @@ export default class SnakePoint extends Point {
     }
     const point = new SnakePoint()
     this.nextPoint = point
-    let temp = 0
-    if (this.prePoint) {
-      temp = this.prePoint.gs[this.prePoint.gs.length - 1]
-    }
     point.prePoint = this
     // 新增历史角度,历史角度为上个节点移动的最后一个角度,如果没有默认0 
-    this.gs = []
-    for (let i = 0; i < dataBus.playerRadius * 2 / dataBus.mapSpeed; i++) {
-      this.gs.push(temp)
-    }
     return point
   }
 }
