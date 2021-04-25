@@ -6,7 +6,7 @@ export default class DataBus {
     if (instance) return instance
     instance = this
     this.direction = new Direction()
-    this.reset({})
+    this.reset()
   }
 
   reset() {
@@ -26,11 +26,7 @@ export default class DataBus {
     // 地图高度
     this.mapHeight = window.innerHeight
     // 地图移动速度（蛇移动速度）每帧
-    this.mapSpeed = 2
-    setTimeout(() => {
-      // this.mapSpeed = 6
-      // console.log('加速')
-    }, 3000)
+    this.mapSpeed = 3
     // 蛇头半径
     this.playerRadius = 5
     // 食物半径

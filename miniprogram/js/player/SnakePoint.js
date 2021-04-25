@@ -7,23 +7,25 @@ export default class SnakePoint extends Point {
     super(x, y, dataBus.playerRadius, color)
     this.prePoint = null
     this.nextPoint = null
-    this.historyAngule = 0
+    this.historyAngle = 0
+    this.mapSpeed = dataBus.mapSpeed
   }
 
-  update(angle) {
-    let temp = this.historyAngule
-    this.historyAngule = angle
+  update(angle, mapSpeed) {
+    let oldAngle = this.historyAngle
+    let oldMapSeepd = this.mapSpeed
+    this.historyAngle = angle
+    this.mapSpeed = mapSpeed
     if (this.prePoint) {
       this.x = this.prePoint.x
       this.y = this.prePoint.y
-      const y = Math.sin(2 * Math.PI / 360 * this.prePoint.historyAngule) * dataBus.mapSpeed
-      const x = Math.cos(2 * Math.PI / 360 * this.prePoint.historyAngule) * dataBus.mapSpeed
+      const y = Math.sin(2 * Math.PI / 360 * this.prePoint.historyAngle) * this.prePoint.mapSpeed
+      const x = Math.cos(2 * Math.PI / 360 * this.prePoint.historyAngle) * this.prePoint.mapSpeed
       // 头部不更新坐标
       this.x -= x
       this.y += y
     }
-    this.nextPoint && this.nextPoint.update(temp)
-    // this.nextPoint && this.nextPoint.update(temp)
+    this.nextPoint && this.nextPoint.update(oldAngle, oldMapSeepd)
   }
 
   render(ctx) {
