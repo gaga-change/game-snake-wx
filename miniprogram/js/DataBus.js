@@ -32,5 +32,7 @@ export default class DataBus {
     // 食物半径
     this.fruitRadius = 6
     this.fruits = []
+    // 分数
+    this.score = 0
   }
 }

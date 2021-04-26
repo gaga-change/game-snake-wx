@@ -16,6 +16,7 @@ export default class Player {
     for(let i = 0; i < 20; i ++) {
       this.addPoint()
     }
+    dataBus.score = 0
   }
 
   cutPoint() {
@@ -39,8 +40,8 @@ export default class Player {
 
   addPoint() {
     this.snakeLength ++
+    dataBus.score ++
     this.snakeLaster = this.snakeLaster.addPoint()
-    console.log(this.snakeLength)
     if (this.snakeLength === 30) {
       dataBus.mapSpeed = 4
     } else if (this.snakeLength === 40) {

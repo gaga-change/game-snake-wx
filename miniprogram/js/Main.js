@@ -3,6 +3,7 @@ import BackGround from './runtime/Background'
 import Player from './player/Player'
 import Fruit from './fruit/Fruit'
 import SnakePoint from './player/SnakePoint'
+import GameInfo from './runtime/GameInfo'
 
 const dataBus = new DataBus()
 const ctx = canvas.getContext('2d')
@@ -27,6 +28,7 @@ export default class Main {
     dataBus.reset()
     // dataBus.snakePoints = new SnakePoint(window.innerWidth / 2, window.innerHeight / 2)
     this.bg = new BackGround()
+    this.gameInfo = new GameInfo()
     this.player = new Player()
     this.bindLoop = this.loop.bind(this)
     this.hasEventBind = false
@@ -72,6 +74,8 @@ export default class Main {
     dataBus.fruits.forEach((item) => item.render(ctx))
     // 蛇绘制
     this.player.render(ctx)
+    // 分数
+    this.gameInfo.renderGameScore(ctx, dataBus.score)
     // 事件绑定
     if (!this.hasEventBind) {
       this.hasEventBind = true
