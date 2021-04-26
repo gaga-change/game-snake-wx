@@ -32,13 +32,20 @@ export default class Main {
     this.player = new Player()
     this.bindLoop = this.loop.bind(this)
     this.hasEventBind = false
+    this.gameEnd = false
     window.cancelAnimationFrame(this.aniId)
     this.aniId = window.requestAnimationFrame(
       this.bindLoop,
     )
   }
 
-  touchEventHandler(e) {}
+  touchEventHandler(e) {
+    if (this.gameEnd && e.type === 'touchend') {
+      if (this.gameInfo.isClickBtn(e.changedTouches[0].clientX,e.changedTouches[0].clientY )) {
+        this.restart()
+      }
+    }
+  }
   // 全局碰撞检测
   collisionDetection() {
     // 是否吃到水果（碰到算吃掉）
@@ -51,6 +58,18 @@ export default class Main {
       // 蛇身体增加
       this.player.addPoint()
     }
+    // 撞墙检测
+    if (dataBus.mapY >= window.innerHeight / 2 - dataBus.playerRadius ||
+      dataBus.mapY + dataBus.mapHeight <= window.innerHeight / 2 + dataBus.playerRadius) {
+      // dataBus.mapY -= y
+      this.gameEnd = true
+    }
+    if (dataBus.mapX >= window.innerWidth / 2 - dataBus.playerRadius ||
+      dataBus.mapX + dataBus.mapWidth <= window.innerWidth / 2 + dataBus.playerRadius) {
+      // dataBus.mapX += x
+      this.gameEnd = true
+    }
+    // 撞身体检测
   }
 
   update() {
@@ -63,6 +82,10 @@ export default class Main {
   }
 
   render() {
+    if (this.gameEnd) {
+      this.gameInfo.renderGameOver(ctx)
+      return
+    }
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     // 背景绘制
     this.bg.render(ctx)
@@ -85,11 +108,14 @@ export default class Main {
       })
     }
   }
-  
+
   loop() {
     dataBus.frame++
     this.update()
     this.render()
+    if (this.gameEnd) {
+      return  
+    }
     this.aniId = window.requestAnimationFrame(
       this.bindLoop
     )

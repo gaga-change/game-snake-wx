@@ -10,15 +10,6 @@ export default class BackGround {
     const x = Math.cos(2 * Math.PI / 360 * angle) * this.dataBus.mapSpeed
     this.dataBus.mapX -= x
     this.dataBus.mapY += y
-    // 检测圆点是否碰到边框
-    if (this.dataBus.mapY >= window.innerHeight / 2 - this.dataBus.playerRadius || 
-      this.dataBus.mapY + this.dataBus.mapHeight <= window.innerHeight / 2 + this.dataBus.playerRadius) {
-      this.dataBus.mapY -= y
-    }
-    if (this.dataBus.mapX >= window.innerWidth / 2 - this.dataBus.playerRadius ||
-      this.dataBus.mapX + this.dataBus.mapWidth <= window.innerWidth / 2 + this.dataBus.playerRadius) {
-        this.dataBus.mapX += x
-    }
   }
 
   render(ctx) {
