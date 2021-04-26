@@ -13,7 +13,7 @@ export default class Player {
     this.snakeLength = 1
     this.snakeHeader = new SnakePoint(window.innerWidth / 2, window.innerHeight / 2, '#112200')
     this.snakeLaster = this.snakeHeader
-    for(let i = 0; i < 20; i ++) {
+    for(let i = 0; i < 100; i ++) {
       this.addPoint()
     }
     dataBus.score = 0
@@ -42,11 +42,26 @@ export default class Player {
     this.snakeLength ++
     dataBus.score ++
     this.snakeLaster = this.snakeLaster.addPoint()
-    if (this.snakeLength === 30) {
+    if (this.snakeLength === 200) {
       dataBus.mapSpeed = 4
-    } else if (this.snakeLength === 40) {
+    } else if (this.snakeLength === 300) {
       dataBus.mapSpeed = 8
     }
+  }
+
+  // 蛇身碰撞检测
+  isCollide() {
+    let point = this.snakeHeader.nextPoint
+    let margin = dataBus.playerRadius * 2
+    while (point) {
+      margin -= point.mapSpeed
+      if (margin < 0) {
+        let result = this.snakeHeader.isCollide(point)
+        if (result) return true
+      }
+      point = point.nextPoint
+    }
+    return false
   }
 
   render(ctx) {

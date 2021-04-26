@@ -70,6 +70,9 @@ export default class Main {
       this.gameEnd = true
     }
     // 撞身体检测
+    if (this.player.isCollide()) {
+      this.gameEnd = true
+    }
   }
 
   update() {

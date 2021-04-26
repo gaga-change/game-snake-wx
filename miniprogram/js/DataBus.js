@@ -5,7 +5,7 @@ export default class DataBus {
   constructor() {
     if (instance) return instance
     instance = this
-    this.direction = new Direction()
+    this.direction = new Direction(0)
     this.reset()
   }
 

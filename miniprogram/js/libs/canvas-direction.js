@@ -17,7 +17,7 @@ export default class Direction {
 
   reset(defaultAngle) {
     this.nowAngule = null
-    this.dirAngle = defaultAngle || 90
+    this.dirAngle = defaultAngle || 0
   }
 
   bindEvnt() {
